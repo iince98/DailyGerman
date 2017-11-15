@@ -3,7 +3,6 @@
     package="com.example.iince98.dailygerman">
 
     <application
-        android:allowBackup="true"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
