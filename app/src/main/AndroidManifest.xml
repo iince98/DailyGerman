@@ -14,6 +14,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity android:name=".Veri_al"></activity>
+        <activity android:name=".Test"></activity>
+
     </application>
 
 </manifest>
