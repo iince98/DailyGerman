@@ -15,7 +15,7 @@ public class Test extends AppCompatActivity {
 
 
         //iki sey yaptım
-
+            //uc sey yaptım
     }
 
 
