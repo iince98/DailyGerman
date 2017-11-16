@@ -13,7 +13,7 @@ public class Test extends AppCompatActivity {
 
 //test
 
-//üçüncü deneme
+//üçüncü deneme.
         //bir sey yaptım
 
     }
