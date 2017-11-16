@@ -39,14 +39,13 @@ public class Veri_al extends AppCompatActivity {
                     throw sqle;
                 }
                 Toast.makeText(Veri_al.this, "Successfully Imported", Toast.LENGTH_SHORT).show();
-                c = myDbHelper.query("PLEASE CHANGE TO YOUR TABLE NAME", null, null, null, null, null, null);
+                c = myDbHelper.query("terimler", null, null, null, null, null, null);
                 if (c.moveToFirst()) {
                     do {
                         Toast.makeText(Veri_al.this,
-                                "_id: " + c.getString(0) + "\n" +
-                                        "DATE: " + c.getString(1) + "\n" +
-                                        "TIME: " + c.getString(2) + "\n" +
-                                        "HEIGHT:  " + c.getString(3),
+                                "Kategori: " + c.getString(0) + "\n" +
+                                        "com.example.iince98.dailygerman.Terim: " + c.getString(1) + "\n" +
+                                        "Anlamı: " + c.getString(2) + "\n" ,
                                 Toast.LENGTH_LONG).show();
                     } while (c.moveToNext());
                 }
