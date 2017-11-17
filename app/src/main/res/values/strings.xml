@@ -2,6 +2,7 @@
     <string name="app_name">DailyGerman</string>
     <string name="calisma_buton">ÇALIŞ</string>
     <string name="veri_yonet">VERİLER</string>
+    <string name="name_buton">Düğme</string>
 
 
 </resources>
