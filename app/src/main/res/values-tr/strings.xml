@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Günlük Almanca</string>
+    <string name="calisma_buton" translatable="false">Çalışma</string>
+    <string name="veri_yonet" translatable="false">Veri Yönetimi</string>
+</resources>
