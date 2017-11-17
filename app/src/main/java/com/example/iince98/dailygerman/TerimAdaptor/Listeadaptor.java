@@ -8,6 +8,7 @@ import android.widget.TextView;
 
 import com.example.iince98.dailygerman.R;
 import com.example.iince98.dailygerman.Terim.Terim;
+import com.example.iince98.dailygerman.Veri_al;
 
 import java.util.List;
 
@@ -18,6 +19,10 @@ import java.util.List;
 public class Listeadaptor extends BaseAdapter {
     private Context mcontext;
     private List<Terim> terimList;
+
+    public Listeadaptor(Veri_al veri_al, List<Terim> terimList) {
+
+    }
 
     @Override
     public int getCount() {
