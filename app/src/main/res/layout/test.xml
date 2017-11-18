@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_weight="1"
-    android:background="@android:color/background_dark"
+    android:background="@drawable/Spring"
     android:orientation="vertical">
 
     <TextView
@@ -12,18 +12,19 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="0.1"
-        android:background="@android:color/background_dark"
+        android:alpha="0.5"
+        android:background="@android:color/black"
         android:paddingLeft="10dp"
         android:text="Info Bar"
-        android:textColor="@android:color/holo_green_dark"
+        android:textColor="@android:color/holo_blue_dark"
         android:textSize="24sp" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
         android:layout_weight="0.095"
+        android:alpha="0.5"
+        android:background="@android:color/background_dark"
         android:gravity="bottom"
         android:orientation="horizontal">
 
@@ -34,7 +35,7 @@
             android:layout_weight="1"
             android:text="Category"
             android:textAlignment="center"
-            android:textColor="@android:color/holo_red_light" />
+            android:textColor="@android:color/holo_purple" />
 
         <TextView
             android:id="@+id/textView6"
@@ -43,7 +44,7 @@
             android:layout_weight="1"
             android:text="State"
             android:textAlignment="center"
-            android:textColor="@android:color/holo_red_light" />
+            android:textColor="@android:color/holo_purple" />
 
         <TextView
             android:id="@+id/textView5"
@@ -52,7 +53,7 @@
             android:layout_weight="1"
             android:text="Favorite"
             android:textAlignment="center"
-            android:textColor="@android:color/holo_red_light" />
+            android:textColor="@android:color/holo_purple" />
     </LinearLayout>
 
     <LinearLayout
@@ -61,7 +62,7 @@
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
         android:layout_weight="0.055"
-        android:background="@android:color/background_light"
+        android:background="@android:color/transparent"
         android:orientation="horizontal">
 
         <Spinner
@@ -103,7 +104,6 @@
         android:layout_height="0dp"
         android:layout_marginBottom="5dp"
         android:layout_weight="0.55"
-        android:background="@android:color/background_dark"
         android:orientation="vertical"
         android:weightSum="1">
 
@@ -149,51 +149,52 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="0.1"
-        android:background="@android:color/background_dark"
+        android:alpha="0.7"
+        android:background="@android:color/black"
         android:orientation="horizontal">
 
         <Button
             android:id="@+id/button"
+            android:layout_width="30dp"
             android:layout_height="wrap_content"
             android:layout_weight=".2"
-            android:layout_width="30dp"
             android:background="@android:drawable/ic_media_previous"
-            android:backgroundTint="@android:color/holo_orange_light"
+            android:backgroundTint="#BDBDBD"
             tools:layout_editor_absoluteX="148dp"
             tools:layout_editor_absoluteY="161dp" />
 
         <Button
             android:id="@+id/button3"
+            android:layout_width="30dp"
             android:layout_height="wrap_content"
             android:layout_weight=".2"
-            android:layout_width="30dp"
             android:background="@android:drawable/ic_menu_save"
-            android:backgroundTint="@android:color/holo_red_dark" />
+            android:backgroundTint="#64DD17" />
 
         <TextView
             android:id="@+id/textView2"
+            android:layout_width="30dp"
             android:layout_height="wrap_content"
             android:layout_weight=".2"
             android:text="#/#"
             android:textColor="@android:color/holo_green_dark"
             android:textSize="24sp"
-            android:layout_width="30dp"
             tools:textAlignment="center" />
 
         <Button
             android:id="@+id/button4"
+            android:layout_width="30dp"
             android:layout_height="wrap_content"
             android:layout_weight=".2"
-            android:layout_width="30dp"
             android:background="@android:drawable/star_off" />
 
         <Button
             android:id="@+id/button2"
+            android:layout_width="30dp"
             android:layout_height="wrap_content"
             android:layout_weight=".2"
             android:background="@android:drawable/ic_media_next"
-            android:backgroundTint="@android:color/holo_orange_light"
-            android:layout_width="30dp" />
+            android:backgroundTint="#BDBDBD" />
     </LinearLayout>
 
 </LinearLayout>
