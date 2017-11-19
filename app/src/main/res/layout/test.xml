@@ -16,7 +16,7 @@
         android:background="@android:color/black"
         android:paddingLeft="10dp"
         android:text="Info Bar"
-        android:textColor="@android:color/holo_blue_dark"
+        android:textColor="@android:color/holo_red_dark"
         android:textSize="24sp" />
 
     <LinearLayout
