@@ -19,23 +19,14 @@ public class Terim {
         return kat;
     }
 
-    public void setKat(int kat) {
-        this.kat = kat;
-    }
 
     public String getTerim() {
         return terim;
     }
 
-    public void setTerim(String terim) {
-        this.terim = terim;
-    }
 
     public String getAnlamı() {
         return anlamı;
     }
 
-    public void setAnlamı(String anlamı) {
-        this.anlamı = anlamı;
-    }
 }
