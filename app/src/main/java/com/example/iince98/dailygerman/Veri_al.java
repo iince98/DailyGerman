@@ -1,29 +1,16 @@
 package com.example.iince98.dailygerman;
 
 import android.content.Context;
-import android.database.Cursor;
 import android.support.v7.app.AppCompatActivity;
-
-        import android.database.Cursor;
-        import android.database.SQLException;
-        import android.support.v7.app.AppCompatActivity;
-        import android.os.Bundle;
+import android.os.Bundle;
 import android.util.Log;
-import android.view.Menu;
-        import android.view.MenuItem;
-        import android.view.View;
-        import android.widget.Button;
-import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
-
 import com.example.iince98.dailygerman.Terim.Terim;
 import com.example.iince98.dailygerman.TerimAdaptor.Listeadaptor;
 import com.example.iince98.dailygerman.Veritabanı.DatabaseHelper;
-
 import java.io.File;
 import java.io.FileOutputStream;
-import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.List;
@@ -62,7 +49,7 @@ public class Veri_al extends AppCompatActivity {
 
         try {
             InputStream inputStream= context.getAssets().open(DatabaseHelper.DBNAME);
-            String outfilename=  DatabaseHelper.DBLOCATION + DatabaseHelper.DBNAME;
+            String outfilename=  DatabaseHelper.DBNAME;
             OutputStream outputStream= new FileOutputStream(outfilename);
             byte [] buff=new byte[1024];
             int length=0;

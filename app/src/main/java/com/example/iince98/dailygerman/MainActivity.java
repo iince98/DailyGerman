@@ -18,7 +18,7 @@ public class MainActivity extends AppCompatActivity {
         veriyonet.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent= new Intent(getApplicationContext(), Veri_al.class);
+                Intent intent= new Intent(getApplication(), Veri_al.class);
                 startActivity(intent);
             }
         });
