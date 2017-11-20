@@ -43,7 +43,7 @@ public class Veri_al extends MainActivity {
         recyclerView.setHasFixedSize(true);
         db= new DatabaseHelper(this);
         searchView = (SearchView) findViewById(R.id.searchView);
-        searchView.setQueryHint("Search Here");
+        searchView.setQueryHint("Ara...");
         searchView.setQueryRefinementEnabled(true);
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
