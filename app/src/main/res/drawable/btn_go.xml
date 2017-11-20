@@ -4,15 +4,15 @@
     android:id="@+id/dugm">
     <size
        android:height="5dp"
-       android:width="3dp"
+       android:width="5dp"
         />
-    <corners android:radius="8dip"/>
+    <corners android:radius="1dip"/>
     <stroke android:color="#5D4037" android:width="1dp"/>
 
     <gradient
         android:angle="135"
         android:centerX="25%"
-        android:centerColor="#961B1B"
+        android:centerColor="#F44336"
         android:startColor="#E8E8E8"
         android:endColor="#000000"
         android:type="linear"

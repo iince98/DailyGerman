@@ -2,11 +2,28 @@
     <string name="app_name">DailyGerman</string>
     <string name="calisma_buton">PRACTICE</string>
     <string name="veri_yonet">MANAGE</string>
-    <string name="name_buton">Düğme</string>
-    <string name="veri_kopya_hatası">Kopyalama Hatası!</string>
-    <string name="definition">Definition:</string>
+    <string name="name_tvinfo">Info Bar</string>
+    <string name="name_buton">GO</string>
+    <string name="name_tvcat">Category</string>
+    <string name="name_tvst">State</string>
+    <string name="name_tvfvr">Favorite</string>
+    <string name="name_tvphr">Phrase</string>
+    <string name="name_tvans">Meaning?</string>
 
-
-
+    <array name="states">
+        <item>All</item>
+        <item>Known</item>
+        <item>Unknown</item>
+    </array>
+    <array name="fvrts">
+        <item>All</item>
+        <item>Favorites</item>
+        <item>Not Favorites</item>
+    </array>
+    <array name="ctgries">
+        <item>All</item>
+        <item>Kitchen</item>
+        <item>Health</item>
+    </array>
 
 </resources>
