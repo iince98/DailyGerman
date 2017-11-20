@@ -39,7 +39,7 @@ public class Veri_al extends MainActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.veri_al);
 
-         recyclerView = (RecyclerView) findViewById(R.id.my_recycler_view);
+        recyclerView = (RecyclerView) findViewById(R.id.my_recycler_view);
         recyclerView.setHasFixedSize(true);
         db= new DatabaseHelper(this);
         searchView = (SearchView) findViewById(R.id.searchView);
@@ -101,11 +101,15 @@ public class Veri_al extends MainActivity {
         int ii;
         SQLiteDatabase sd = db.getReadableDatabase();
         Cursor cursor = sd.query("Dictionary1" ,null, null, null, null, null, null);
+        //Cursor cursor = sd.query("Terimler1" ,null, null, null, null, null, null);
         ii=cursor.getColumnIndex("word");
+        //ii=cursor.getColumnIndex("kategori");
+
         wordcombimelist=new ArrayList<String>();
         meancombimelist= new ArrayList<String>();
         while (cursor.moveToNext()){
             namelist.put(cursor.getString(ii), cursor.getString(cursor.getColumnIndex("definition")));
+            //namelist.put(cursor.getString(ii), cursor.getString(cursor.getColumnIndex("anlamı")));
         }
         Iterator entries = namelist.entrySet().iterator();
         while (entries.hasNext()) {
