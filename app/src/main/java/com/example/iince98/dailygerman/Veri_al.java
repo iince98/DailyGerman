@@ -37,8 +37,9 @@ public class Veri_al extends MainActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        recyclerView = (RecyclerView) findViewById(R.id.my_recycler_view);
+        setContentView(R.layout.veri_al);
+
+         recyclerView = (RecyclerView) findViewById(R.id.my_recycler_view);
         recyclerView.setHasFixedSize(true);
         db= new DatabaseHelper(this);
         searchView = (SearchView) findViewById(R.id.searchView);
