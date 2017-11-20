@@ -9,6 +9,8 @@
     <string name="name_tvfvr">Favorite</string>
     <string name="name_tvphr">Phrase</string>
     <string name="name_tvans">Meaning?</string>
+    <string name="definition">Definition:</string>
+
 
     <array name="states">
         <item>All</item>
