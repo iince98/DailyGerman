@@ -3,6 +3,10 @@
     <string name="calisma_buton">PRACTICE</string>
     <string name="veri_yonet">MANAGE</string>
     <string name="name_buton">Düğme</string>
+    <string name="veri_kopya_hatası">Kopyalama Hatası!</string>
+    <string name="definition">Definition:</string>
+
+
 
 
 </resources>
