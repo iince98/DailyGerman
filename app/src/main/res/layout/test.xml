@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_weight="1"
-    android:background="@drawable/autumn"
+    android:background="@drawable/spring2"
     android:orientation="vertical">
 
     <TextView
@@ -15,8 +15,9 @@
         android:alpha="0.5"
         android:background="@android:color/black"
         android:paddingLeft="10dp"
+        android:paddingRight="10dp"
         android:text="@string/name_tvinfo"
-        android:textColor="@android:color/holo_red_dark"
+        android:textColor="@android:color/holo_green_dark"
         android:textSize="30sp" />
 
     <LinearLayout
@@ -26,11 +27,11 @@
         android:alpha="0.5"
         android:background="@android:color/background_dark"
         android:gravity="bottom"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:weightSum="3">
 
         <TextView
             android:id="@+id/tv_ctgry"
-            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="@string/name_tvcat"
@@ -40,7 +41,6 @@
 
         <TextView
             android:id="@+id/tv_st"
-            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="@string/name_tvst"
@@ -50,7 +50,6 @@
 
         <TextView
             android:id="@+id/tv_fvrt"
-            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="@string/name_tvfvr"
@@ -120,6 +119,7 @@
             android:layout_marginRight="10dp"
             android:background="@drawable/tv_phrase"
             android:paddingLeft="10dp"
+            android:paddingRight="10dp"
             android:paddingTop="5dp"
             android:shadowColor="#A86C1D"
             android:shadowDx="0"
@@ -138,6 +138,7 @@
             android:layout_marginRight="10dp"
             android:background="@drawable/tv_phraseanswr"
             android:paddingLeft="10dp"
+            android:paddingRight="10dp"
             android:paddingTop="5dp"
             android:shadowColor="#A86C1D"
             android:shadowDx="0"
@@ -158,25 +159,23 @@
 
         <Button
             android:id="@+id/btn_prev"
-            android:layout_width="30dp"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight=".2"
             android:background="@android:drawable/ic_media_previous"
-            android:backgroundTint="#BDBDBD"
             tools:layout_editor_absoluteX="148dp"
             tools:layout_editor_absoluteY="161dp" />
 
         <Button
             android:id="@+id/btn_st"
-            android:layout_width="30dp"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight=".2"
-            android:background="@android:drawable/ic_menu_save"
-            android:backgroundTint="#64DD17" />
+            android:background="@android:drawable/ic_menu_save" />
 
         <TextView
             android:id="@+id/tv_pnmbr"
-            android:layout_width="30dp"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight=".2"
             android:text="#/#"
@@ -186,18 +185,17 @@
 
         <Button
             android:id="@+id/btn_fvrt"
-            android:layout_width="30dp"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight=".2"
             android:background="@android:drawable/star_off" />
 
         <Button
             android:id="@+id/btn_next"
-            android:layout_width="30dp"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight=".2"
-            android:background="@android:drawable/ic_media_next"
-            android:backgroundTint="#BDBDBD" />
+            android:background="@android:drawable/ic_media_next" />
     </LinearLayout>
 
 </LinearLayout>
