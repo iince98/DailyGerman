@@ -1,6 +1,10 @@
 package com.example.iince98.dailygerman;
 
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
+import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -17,6 +21,42 @@ public class Test extends AppCompatActivity {
     Button butn_go, butn_prev, butn_next, butn_fvrt, butn_st;
     Spinner spinner_ctgry, spinner_st, spinner_fvrt;
     String knwn_State, ctgry, fvrt;
+    Integer  top_ks, topb_ks, topnb_ks,sb=0, snb=0, cpos, kntr_mark=0;
+    DatabaseHelper vt;
+    Cursor cursor, cursor_renk;
+    public String [] liste1;
+
+    //herhangi bir butona tıklandıgında Id ile btn tespiti ve switch case ile uygulanacak metoda gitme
+    public View.OnClickListener btnClickListener=new View.OnClickListener() {
+        @Override
+        public void onClick (View v) {
+            switch (v.getId()){
+                case R.id.tv_info:
+                    showall ();
+                    break;
+                case R.id.tv_answr:
+                    showmean ();
+                    break;
+                case R.id.btn_go:
+                    showgo ();
+                    break;
+                case R.id.btn_prev:
+                    showprev ();
+                    break;
+                case R.id.btn_next:
+                    shownext ();
+                    break;
+                case R.id.btn_st:
+                    marknown ();
+                    break;
+                case R.id.btn_fvrt:
+                    mrkfvrt ();
+                    break;
+
+            }
+        }
+
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,10 +74,15 @@ public class Test extends AppCompatActivity {
 
         //Buton tanımlama
         butn_go = findViewById(R.id.btn_go);
+        butn_go.setOnClickListener(btnClickListener);
         butn_prev = findViewById(R.id.btn_prev);
+        butn_prev.setOnClickListener(btnClickListener);
         butn_next = findViewById(R.id.btn_next);
+        butn_next.setOnClickListener(btnClickListener);
         butn_fvrt = findViewById(R.id.btn_fvrt);
+        butn_fvrt.setOnClickListener(btnClickListener);
         butn_st = findViewById(R.id.btn_st);
+        butn_st.setOnClickListener(btnClickListener);
 
         // spinner tanımlama
         spinner_ctgry= findViewById(R.id.sp_ctgry);
@@ -138,5 +183,115 @@ public class Test extends AppCompatActivity {
         });
     }
 
+    public void showgo() {
+        //seçilen kelime bilgilerinin bulunması ve liste dizisine atanması
+        vt = new Veritabani1(this);
+        SQLiteDatabase dbOku = vt.getReadableDatabase();
+
+        if (ctgry.equals("All")) {
+            switch (knwn_State) {
+                case "Known":
+                    cursor = dbOku.rawQuery("SELECT * FROM TABLO_WORD WHERE COLOR= 'Y' ORDER BY WORD ASC", null);
+                    top_ks = cursor.getCount();
+                    break;
+                case "Unknown":
+                    cursor = dbOku.rawQuery("SELECT * FROM TABLO_WORD WHERE COLOR= 'N' ORDER BY WORD ASC", null);
+                    top_ks = cursor.getCount();
+                    break;
+                case "All":
+                    cursor = dbOku.rawQuery("SELECT * FROM TABLO_WORD ORDER BY WORD ASC", null);
+                    top_ks = cursor.getCount();
+                    cursor_renk = dbOku.rawQuery("SELECT * FROM TABLO_WORD WHERE COLOR= 'Y' ", null);
+                    topb_ks = cursor_renk.getCount();
+                    break;
+            }
+
+        } else {
+
+            switch (knwn_State) {
+                case "Known":
+                    cursor = dbOku.rawQuery("SELECT * FROM TABLO_WORD WHERE TYPE='" + ctgry + "' AND COLOR= 'Y' ORDER BY WORD ASC", null);
+                    top_ks = cursor.getCount();
+                    break;
+                case "Unknown":
+                    cursor = dbOku.rawQuery("SELECT * FROM TABLO_WORD WHERE TYPE='" + ctgry + "' AND COLOR= 'N' ORDER BY WORD ASC", null);
+                    top_ks = cursor.getCount();
+                    break;
+                case "All":
+                    cursor = dbOku.rawQuery("SELECT * FROM TABLO_WORD WHERE TYPE='" + ctgry + "' ORDER BY WORD ASC ", null);
+                    top_ks = cursor.getCount();
+                    cursor_renk = dbOku.rawQuery("SELECT * FROM TABLO_WORD WHERE TYPE='" + ctgry + "' AND COLOR= 'Y' ", null);
+                    break;
+            }
+        }
+        if (cursor.getCount()<1) Toast.makeText(this, "There is no record..", Toast.LENGTH_SHORT).show();
+        else {cursor.moveToFirst();
+            liste1 = new String[]{cursor.getString(0),  cursor.getString(1), cursor.getString(2), cursor.getString(3), cursor.getString(4)};
+
+
+            txv_info.setText(liste1 [0]);
+            txv_info.setSelected(true);
+            txv_phrs.setText(liste1 [1]);
+            txv_answr.setText(liste1 [2]);
+            sb=sb+1;
+            txv_pnmbr.setText(sb+"/"+top_ks);
+
+            switch (liste1 [3]) {
+                case "N":
+                    butn_st.setBackground(Drawable.createFromPath("@android:color/holo_red_dark"));
+                    txv_answr.setBackground(getResources().getDrawable(Integer.parseInt("@drawable/tv_phraseanswr")));
+                    txv_phrs.setBackground(getResources().getDrawable(Integer.parseInt("tv_phrasek")));
+                    break;
+                case "Y":
+                    butn_st.setBackground(Drawable.createFromPath("@android:color/holo_green_dark"));
+                    txv_answr.setBackground(getResources().getDrawable(Integer.parseInt("@drawable/tv_phraseanswr")));
+                    txv_phrs.setBackground(getResources().getDrawable(Integer.parseInt("tv_phrase")));
+                    break;
+            }
+            if (cursor.getString(4)=="Y"){
+                txv_fvrt.setBackground (Drawable.createFromPath("@android:drawable/star_on"));
+            } else
+                txv_fvrt.setBackground (Drawable.createFromPath("@android:drawable/star_off"));
+        }
+    }
+
+    public void shownext(){
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
+            txv_answr.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+        }
+        if (cursor.getCount()<=0){
+            Toast.makeText(this, "There is no record..", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        if (cursor.isLast()){
+            cursor.moveToFirst();
+            sb=0;
+        }
+        else
+            cursor.moveToNext();
+        txv_info.setText(cursor.getString(0)+"***"+cursor.getString(3));
+        txv_info.setSelected(true);
+        txv_phrs.setText(cursor.getString(1));
+        txv_answr.setText(cursor.getString(2));
+        sb=sb+1;
+        txv_pnmbr.setText(sb+"/"+top_ks);
+        switch (cursor.getString(3)) {
+            case "N":
+                butn_st.setBackground(Drawable.createFromPath("@android:color/holo_red_dark"));
+                txv_answr.setBackground(getResources().getDrawable(Integer.parseInt("@drawable/tv_phraseanswr")));
+                txv_phrs.setBackground(getResources().getDrawable(Integer.parseInt("tv_phrasek")));
+                break;
+            case "Y":
+                butn_st.setBackground(Drawable.createFromPath("@android:color/holo_green_dark"));
+                txv_answr.setBackground(getResources().getDrawable(Integer.parseInt("@drawable/tv_phraseanswr")));
+                txv_phrs.setBackground(getResources().getDrawable(Integer.parseInt("tv_phrase")));
+                break;
+        }
+        if (cursor.getString(4)=="Y"){
+            txv_fvrt.setBackground (Drawable.createFromPath("@android:drawable/star_on"));
+        } else
+            txv_fvrt.setBackground (Drawable.createFromPath("@android:drawable/star_off"));
+
+    }
 
 }
