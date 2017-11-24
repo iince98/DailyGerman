@@ -96,7 +96,6 @@ public class Veri_al extends MainActivity {
             e.printStackTrace();
         }
 
-
         namelist=new LinkedHashMap<>();
         int ii;
         SQLiteDatabase sd = db.getReadableDatabase();
