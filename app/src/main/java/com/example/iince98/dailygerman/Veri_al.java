@@ -1,8 +1,5 @@
 package com.example.iince98.dailygerman;
 
-
-import android.support.v7.app.AppCompatActivity;
-
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -10,8 +7,6 @@ import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
-
-
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
@@ -99,15 +94,16 @@ public class Veri_al extends MainActivity {
         namelist=new LinkedHashMap<>();
         int ii;
         SQLiteDatabase sd = db.getReadableDatabase();
-        Cursor cursor = sd.query("Dictionary1" ,null, null, null, null, null, null);
+
+        Cursor cursor = sd.query("Terimler" ,null, null, null, null, null, null);
         //Cursor cursor = sd.query("Terimler1" ,null, null, null, null, null, null);
-        ii=cursor.getColumnIndex("word");
+        ii=cursor.getColumnIndex("Terim");
         //ii=cursor.getColumnIndex("kategori");
 
         wordcombimelist=new ArrayList<String>();
         meancombimelist= new ArrayList<String>();
         while (cursor.moveToNext()){
-            namelist.put(cursor.getString(ii), cursor.getString(cursor.getColumnIndex("definition")));
+            namelist.put(cursor.getString(ii), cursor.getString(cursor.getColumnIndex("Anlamı")));
             //namelist.put(cursor.getString(ii), cursor.getString(cursor.getColumnIndex("anlamı")));
         }
         Iterator entries = namelist.entrySet().iterator();

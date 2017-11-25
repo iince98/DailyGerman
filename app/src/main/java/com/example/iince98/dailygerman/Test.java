@@ -55,8 +55,22 @@ public class Test extends AppCompatActivity {
 
             }
         }
-
     };
+
+    private void showall() {
+    }
+
+    private void showmean() {
+    }
+
+    private void showprev() {
+    }
+
+    private void marknown() {
+    }
+    private void mrkfvrt() {
+    }
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -185,7 +199,19 @@ public class Test extends AppCompatActivity {
 
     public void showgo() {
         //seçilen kelime bilgilerinin bulunması ve liste dizisine atanması
-        vt = new Veritabani1(this);
+
+            DatabaseHelper db =new DatabaseHelper(this);
+            try {
+
+                db.createDataBase();
+                db.openDataBase();
+
+            }
+            catch (Exception e)
+            {
+                e.printStackTrace();
+            }
+
         SQLiteDatabase dbOku = vt.getReadableDatabase();
 
         if (ctgry.equals("All")) {

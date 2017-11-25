@@ -14,10 +14,10 @@ import java.sql.SQLException;
 public class DatabaseHelper extends SQLiteOpenHelper {
 
     //The Android's default system path of your application database.
-    private static String DB_PATH = "";
+    private static String DB_PATH = "/data/data/com.example.iince98.dailygerman/databases/";
 
     //private static String DB_NAME = "dailygerman.db";
-    private static String DB_NAME = "dictionary.db";
+    private static String DB_NAME = "terimler.db";
 
     private SQLiteDatabase myDataBase;
 
