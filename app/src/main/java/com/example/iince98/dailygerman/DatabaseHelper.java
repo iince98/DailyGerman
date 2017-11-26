@@ -1,5 +1,6 @@
 package com.example.iince98.dailygerman;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
@@ -156,6 +157,16 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
 
     //add your public methods for insert, get, delete and update data in database.
+
+    public boolean markData(String id1, String mark) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        /*contentValues.put(COL_1,id1);
+        contentValues.put(COL_3,mark);
+
+        db.update(TABLE_NAME, contentValues, " ID = ? ", new String[] { id1 });*/
+        return true;
+    }
 
 }
 
