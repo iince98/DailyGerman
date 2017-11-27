@@ -7,6 +7,9 @@ import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
+import android.view.MotionEvent;
+import android.widget.Toast;
+
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
@@ -23,8 +26,7 @@ public class Veri_al extends MainActivity {
     private static RecyclerView recyclerView;
     public static ArrayList<DictObjectModel> data;
     DatabaseHelper db ;
-    ArrayList<String> wordcombimelist;
-    ArrayList<String> meancombimelist;
+    ArrayList<String> wordcombimelist, meancombimelist;
     LinkedHashMap<String,String> namelist;
     SearchView searchView;
 
@@ -74,7 +76,22 @@ public class Veri_al extends MainActivity {
                 return true;
             }
         });
+                recyclerView.addOnItemTouchListener(new RecyclerView.OnItemTouchListener() {
+                    @Override
+                    public boolean onInterceptTouchEvent(RecyclerView rv, MotionEvent e) {
+                        return false;
+                    }
 
+                    @Override
+                    public void onTouchEvent(RecyclerView rv, MotionEvent e) {
+                        Toast.makeText(getApplicationContext(), "Basıldı", Toast.LENGTH_LONG).show();
+                    }
+
+                    @Override
+                    public void onRequestDisallowInterceptTouchEvent(boolean disallowIntercept) {
+
+                    }
+                });
 
     }
     public void fetchData()
@@ -118,5 +135,6 @@ public class Veri_al extends MainActivity {
         }
         adapter = new CustomAdapter(data);
         recyclerView.setAdapter(adapter);
+
     }
 }
