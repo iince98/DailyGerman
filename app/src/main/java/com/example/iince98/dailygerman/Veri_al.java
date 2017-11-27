@@ -71,8 +71,6 @@ public class Veri_al extends MainActivity {
                 }
                 adapter = new CustomAdapter(filteredList);
                 recyclerView.setAdapter(adapter);
-
-
                 return true;
             }
         });
