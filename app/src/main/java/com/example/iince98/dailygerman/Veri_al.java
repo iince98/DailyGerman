@@ -76,22 +76,6 @@ public class Veri_al extends MainActivity {
                 return true;
             }
         });
-                recyclerView.addOnItemTouchListener(new RecyclerView.OnItemTouchListener() {
-                    @Override
-                    public boolean onInterceptTouchEvent(RecyclerView rv, MotionEvent e) {
-                        return false;
-                    }
-
-                    @Override
-                    public void onTouchEvent(RecyclerView rv, MotionEvent e) {
-                        Toast.makeText(getApplicationContext(), "Basıldı", Toast.LENGTH_LONG).show();
-                    }
-
-                    @Override
-                    public void onRequestDisallowInterceptTouchEvent(boolean disallowIntercept) {
-
-                    }
-                });
 
     }
     public void fetchData()
@@ -135,6 +119,7 @@ public class Veri_al extends MainActivity {
         }
         adapter = new CustomAdapter(data);
         recyclerView.setAdapter(adapter);
+        Toast.makeText(getApplicationContext(), String.valueOf(wordcombimelist.size()), Toast.LENGTH_LONG).show();
 
     }
 }
