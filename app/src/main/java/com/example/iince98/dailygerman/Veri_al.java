@@ -91,8 +91,8 @@ public class Veri_al extends MainActivity {
         namelist=new LinkedHashMap<>();
         int ii;
         SQLiteDatabase sd = db.getReadableDatabase();
-
-        Cursor cursor = sd.query("Terimler" ,null, null, null, null, null, null);
+        Cursor cursor = sd.rawQuery("SELECT * FROM Terimler ", null);
+        //Cursor cursor = sd.query("Terimler" ,null, null, null, null, null, null);
         //Cursor cursor = sd.query("Terimler1" ,null, null, null, null, null, null);
         ii=cursor.getColumnIndex("Terim");
         //ii=cursor.getColumnIndex("kategori");
