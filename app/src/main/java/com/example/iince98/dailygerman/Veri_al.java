@@ -7,9 +7,7 @@ import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
-import android.view.MotionEvent;
 import android.widget.Toast;
-
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
@@ -117,7 +115,6 @@ public class Veri_al extends MainActivity {
         }
         adapter = new CustomAdapter(data);
         recyclerView.setAdapter(adapter);
-        Toast.makeText(getApplicationContext(), String.valueOf(wordcombimelist.size()), Toast.LENGTH_LONG).show();
 
     }
 }
