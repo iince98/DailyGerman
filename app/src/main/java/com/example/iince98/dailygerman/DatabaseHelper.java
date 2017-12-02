@@ -168,10 +168,19 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public boolean markData(String id1, String mark) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
-        /*contentValues.put(COL_1,id1);
-        contentValues.put(COL_3,mark);
+        contentValues.put("Terim",id1);
+        contentValues.put("STATE",mark);
 
-        db.update(TABLE_NAME, contentValues, " ID = ? ", new String[] { id1 });*/
+        db.update("Terimler", contentValues, " Terim = ? ", new String[] { id1 });
+        return true;
+    }
+    public boolean markDatafvr(String id1, String mark) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put("Terim",id1);
+        contentValues.put("FAVORITE",mark);
+
+        db.update("Terimler", contentValues, " Terim = ? ", new String[] { id1 });
         return true;
     }
 

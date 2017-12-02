@@ -56,7 +56,7 @@ public class Test extends AppCompatActivity {
                     marknown ();
                     break;
                 case R.id.btn_fvrt:
-                    //mrkfvrt ();
+                    markfvrt ();
                     break;
 
             }
@@ -219,15 +219,15 @@ public class Test extends AppCompatActivity {
                 case "Known":
                     switch (fvrt){
                         case "Favorites":
-                            cursor = dbOku.rawQuery("SELECT * FROM Terimler WHERE STATE= 'KNOWN' AND FAVORITE= 'FAVORITES' ", null);
+                            cursor = dbOku.rawQuery("SELECT * FROM Terimler WHERE STATE= 'Y' AND FAVORITE= 'Y' ", null);
                             top_ks = cursor.getCount();
                             break;
                         case "Not Favorites":
-                            cursor = dbOku.rawQuery("SELECT * FROM Terimler WHERE STATE= 'KNOWN' AND FAVORITE= 'NOT FAVORITES' ", null);
+                            cursor = dbOku.rawQuery("SELECT * FROM Terimler WHERE STATE= 'Y' AND FAVORITE= 'N' ", null);
                             top_ks = cursor.getCount();
                             break;
                         case "All":
-                            cursor = dbOku.rawQuery("SELECT * FROM Terimler WHERE STATE= 'KNOWN' ", null);
+                            cursor = dbOku.rawQuery("SELECT * FROM Terimler WHERE STATE= 'Y' ", null);
                             top_ks = cursor.getCount();
                             break;
                     }
@@ -236,15 +236,15 @@ public class Test extends AppCompatActivity {
                 case "Unknown":
                     switch (fvrt){
                         case "Favorites":
-                            cursor = dbOku.rawQuery("SELECT * FROM Terimler WHERE STATE= 'UNKNOWN' AND FAVORITE= 'FAVORITES' ", null);
+                            cursor = dbOku.rawQuery("SELECT * FROM Terimler WHERE STATE= 'N' AND FAVORITE= 'Y' ", null);
                             top_ks = cursor.getCount();
                             break;
                         case "Not Favorites":
-                            cursor = dbOku.rawQuery("SELECT * FROM Terimler WHERE STATE= 'UNKNOWN' AND FAVORITE= 'NOT FAVORITES' ", null);
+                            cursor = dbOku.rawQuery("SELECT * FROM Terimler WHERE STATE= 'N' AND FAVORITE= 'N' ", null);
                             top_ks = cursor.getCount();
                             break;
                         case "All":
-                            cursor = dbOku.rawQuery("SELECT * FROM Terimler WHERE STATE= 'UNKNOWN' ", null);
+                            cursor = dbOku.rawQuery("SELECT * FROM Terimler WHERE STATE= 'N' ", null);
                             top_ks = cursor.getCount();
                             break;
                     }
@@ -252,11 +252,11 @@ public class Test extends AppCompatActivity {
                 case "All":
                     switch (fvrt){
                         case "Favorites":
-                            cursor = dbOku.rawQuery("SELECT * FROM Terimler WHERE FAVORITE= 'FAVORITES' ", null);
+                            cursor = dbOku.rawQuery("SELECT * FROM Terimler WHERE FAVORITE= 'Y' ", null);
                             top_ks = cursor.getCount();
                             break;
                         case "Not Favorites":
-                            cursor = dbOku.rawQuery("SELECT * FROM Terimler WHERE FAVORITE= 'NOT FAVORITES' ", null);
+                            cursor = dbOku.rawQuery("SELECT * FROM Terimler WHERE FAVORITE= 'N' ", null);
                             top_ks = cursor.getCount();
                             break;
                         case "All":
@@ -273,15 +273,15 @@ public class Test extends AppCompatActivity {
                 case "Known":
                     switch (fvrt){
                         case "Favorites":
-                            cursor = dbOku.rawQuery("SELECT * FROM Terimler WHERE CATEGORY='" + ctgry + "' AND STATE= 'KNOWN' AND FAVORITE= 'FAVORITES' ", null);
+                            cursor = dbOku.rawQuery("SELECT * FROM Terimler WHERE CATEGORY='" + ctgry + "' AND STATE= 'Y' AND FAVORITE= 'Y' ", null);
                             top_ks = cursor.getCount();
                             break;
                         case "Not Favorites":
-                            cursor = dbOku.rawQuery("SELECT * FROM Terimler WHERE CATEGORY='" + ctgry + "' AND STATE= 'KNOWN' AND FAVORITE= 'NOT FAVORITES' ", null);
+                            cursor = dbOku.rawQuery("SELECT * FROM Terimler WHERE CATEGORY='" + ctgry + "' AND STATE= 'Y' AND FAVORITE= 'N' ", null);
                             top_ks = cursor.getCount();
                             break;
                         case "All":
-                            cursor = dbOku.rawQuery("SELECT * FROM Terimler WHERE CATEGORY='" + ctgry + "' AND STATE= 'KNOWN' ", null);
+                            cursor = dbOku.rawQuery("SELECT * FROM Terimler WHERE CATEGORY='" + ctgry + "' AND STATE= 'Y' ", null);
                             top_ks = cursor.getCount();
                             break;
                     }
@@ -289,15 +289,15 @@ public class Test extends AppCompatActivity {
                 case "Unknown":
                     switch (fvrt){
                         case "Favorites":
-                            cursor = dbOku.rawQuery("SELECT * FROM Terimler WHERE CATEGORY='" + ctgry + "' AND STATE= 'UNKNOWN' AND FAVORITE= 'FAVORITES' ", null);
+                            cursor = dbOku.rawQuery("SELECT * FROM Terimler WHERE CATEGORY='" + ctgry + "' AND STATE= 'N' AND FAVORITE= 'Y' ", null);
                             top_ks = cursor.getCount();
                             break;
                         case "Not Favorites":
-                            cursor = dbOku.rawQuery("SELECT * FROM Terimler WHERE CATEGORY='" + ctgry + "' AND STATE= 'UNKNOWN' AND FAVORITE= 'NOT FAVORITES' ", null);
+                            cursor = dbOku.rawQuery("SELECT * FROM Terimler WHERE CATEGORY='" + ctgry + "' AND STATE= 'N' AND FAVORITE= 'N' ", null);
                             top_ks = cursor.getCount();
                             break;
                         case "All":
-                            cursor = dbOku.rawQuery("SELECT * FROM Terimler WHERE CATEGORY='" + ctgry + "' AND STATE= 'UNKNOWN' ", null);
+                            cursor = dbOku.rawQuery("SELECT * FROM Terimler WHERE CATEGORY='" + ctgry + "' AND STATE= 'N' ", null);
                             top_ks = cursor.getCount();
                             break;
                     }
@@ -305,11 +305,11 @@ public class Test extends AppCompatActivity {
                 case "All":
                     switch (fvrt){
                         case "Favorites":
-                            cursor = dbOku.rawQuery("SELECT * FROM Terimler WHERE CATEGORY='" + ctgry + "'  AND FAVORITE= 'FAVORITES' ", null);
+                            cursor = dbOku.rawQuery("SELECT * FROM Terimler WHERE CATEGORY='" + ctgry + "'  AND FAVORITE= 'Y' ", null);
                             top_ks = cursor.getCount();
                             break;
                         case "Not Favorites":
-                            cursor = dbOku.rawQuery("SELECT * FROM Terimler WHERE CATEGORY='" + ctgry + "'  AND FAVORITE= 'NOT FAVORITES' ", null);
+                            cursor = dbOku.rawQuery("SELECT * FROM Terimler WHERE CATEGORY='" + ctgry + "'  AND FAVORITE= 'N' ", null);
                             top_ks = cursor.getCount();
                             break;
                         case "All":
@@ -324,7 +324,6 @@ public class Test extends AppCompatActivity {
         else {cursor.moveToFirst();
             liste1 = new String[]{cursor.getString(0),  cursor.getString(1), cursor.getString(2), cursor.getString(3), cursor.getString(4)};
 
-//aa
 
             txv_phrs.setText(liste1 [1]);
             txv_answr.setText(liste1 [2]);
@@ -333,20 +332,20 @@ public class Test extends AppCompatActivity {
 
             switch (liste1 [3]) {
                 case "N":
-                    butn_st.setBackground(ColorDrawable.createFromPath("@android:color/holo_red_dark"));
+                    butn_st.setBackground(getResources().getDrawable(android.R.drawable.presence_video_busy));
                     txv_answr.setBackground(getResources().getDrawable(R.drawable.tv_phraseanswr));
                     txv_phrs.setBackground(getResources().getDrawable(R.drawable.tv_phrasek));
                     break;
                 case "Y":
-                    butn_st.setBackground(Drawable.createFromPath("@android:color/holo_green_dark"));
+                    butn_st.setBackground(getResources().getDrawable(android.R.drawable.presence_video_online));
                     txv_answr.setBackground(getResources().getDrawable(R.drawable.tv_phraseanswr));
                     txv_phrs.setBackground(getResources().getDrawable(R.drawable.tv_phrase));
                     break;
             }
             if (cursor.getString(4).equals("Y")){
-                txv_fvrt.setBackground (Drawable.createFromPath("@android:drawable/star_on"));
+                butn_fvrt.setBackground (getResources().getDrawable(android.R.drawable.star_on));
             } else
-                txv_fvrt.setBackground (Drawable.createFromPath("@android:drawable/star_off"));
+                butn_fvrt.setBackground (getResources().getDrawable(android.R.drawable.star_off));
         }
     }
 
@@ -366,26 +365,26 @@ public class Test extends AppCompatActivity {
             cursor.moveToNext();
         txv_info.setText(cursor.getString(0)+"***"+cursor.getString(1));
         txv_info.setSelected(true);
-        txv_phrs.setText(cursor.getString(0));
-        txv_answr.setText(cursor.getString(1));
+        txv_phrs.setText(cursor.getString(1));
+        txv_answr.setText(cursor.getString(2));
         sb=sb+1;
         txv_pnmbr.setText(sb+"/"+top_ks);
         switch (cursor.getString(3)) {
             case "N":
-                butn_st.setBackground(Drawable.createFromPath("@android:color/holo_red_dark"));
+                butn_st.setBackground(getResources().getDrawable(android.R.drawable.presence_video_busy));
                 txv_answr.setBackground(getResources().getDrawable(R.drawable.tv_phraseanswr));
                 txv_phrs.setBackground(getResources().getDrawable(R.drawable.tv_phrasek));
                 break;
             case "Y":
-                butn_st.setBackground(Drawable.createFromPath("@android:color/holo_green_dark"));
+                butn_st.setBackground(getResources().getDrawable(android.R.drawable.presence_video_online));
                 txv_answr.setBackground(getResources().getDrawable(R.drawable.tv_phraseanswr));
                 txv_phrs.setBackground(getResources().getDrawable(R.drawable.tv_phrase));
                 break;
         }
-        if (cursor.getString(4)=="Y"){
-            txv_fvrt.setBackground (Drawable.createFromPath("@android:drawable/star_on"));
+        if (cursor.getString(4).equals("Y")){
+            butn_fvrt.setBackground (getResources().getDrawable(android.R.drawable.star_on));
         } else
-            txv_fvrt.setBackground (Drawable.createFromPath("@android:drawable/star_off"));
+            butn_fvrt.setBackground (getResources().getDrawable(android.R.drawable.star_off));
 
     }
     public void showprev(){
@@ -413,20 +412,20 @@ public class Test extends AppCompatActivity {
         txv_pnmbr.setText(sb+"/"+top_ks);
         switch (cursor.getString(3)) {
             case "N":
-                butn_st.setBackground(Drawable.createFromPath("@android:color/holo_red_dark"));
+                butn_st.setBackground(getResources().getDrawable(android.R.drawable.presence_video_busy));
                 txv_answr.setBackground(getResources().getDrawable(R.drawable.tv_phraseanswr));
                 txv_phrs.setBackground(getResources().getDrawable(R.drawable.tv_phrasek));
                 break;
             case "Y":
-                butn_st.setBackground(Drawable.createFromPath("@android:color/holo_green_dark"));
+                butn_st.setBackground(getResources().getDrawable(android.R.drawable.presence_video_online));
                 txv_answr.setBackground(getResources().getDrawable(R.drawable.tv_phraseanswr));
                 txv_phrs.setBackground(getResources().getDrawable(R.drawable.tv_phrase));
                 break;
         }
-        if (cursor.getString(4)=="Y"){
-            txv_fvrt.setBackground (Drawable.createFromPath("@android:drawable/star_on"));
+        if (cursor.getString(4).equals("Y")){
+            butn_fvrt.setBackground (getResources().getDrawable(android.R.drawable.star_on));
         } else
-            txv_fvrt.setBackground (Drawable.createFromPath("@android:drawable/star_off"));
+            butn_fvrt.setBackground (getResources().getDrawable(android.R.drawable.star_off));
 
     }
 
@@ -438,10 +437,10 @@ public class Test extends AppCompatActivity {
         switch (cursor.getString(3)){
             case "N":
                 cpos=cursor.getPosition();
-                boolean isUpdate = db.markData(cursor.getString(0),  "Y");
+                boolean isUpdate = db.markData(cursor.getString(1),  "Y");
                 if(isUpdate){
                     Toast.makeText(this,"This phrase is marked as known..",Toast.LENGTH_LONG).show();
-                    butn_st.setBackgroundColor(Color.parseColor("#8BC34A"));
+                    butn_st.setBackground(getResources().getDrawable(android.R.drawable.presence_video_online));
                     txv_phrs.setBackground(getResources().getDrawable(R.drawable.tv_phrase));
                     refresh_data();
                     if (knwn_State.equals("Known")|| knwn_State.equals("Unknown")){
@@ -453,10 +452,10 @@ public class Test extends AppCompatActivity {
                     Toast.makeText(this,"The phrase is not marked as known..",Toast.LENGTH_LONG).show();break;
             case "Y":
                 cpos=cursor.getPosition();
-                isUpdate = db.markData(cursor.getString(0),  "N");
+                isUpdate = db.markData(cursor.getString(1),  "N");
                 if(isUpdate){
                     Toast.makeText(this,"This phrase is marked as unknown..",Toast.LENGTH_LONG).show();
-                    butn_st.setBackgroundColor(Color.RED);
+                    butn_st.setBackground(getResources().getDrawable(android.R.drawable.presence_video_busy));
                     txv_phrs.setBackground(getResources().getDrawable(R.drawable.tv_phrasek));
                     refresh_data();
                     if (knwn_State.equals("Known")|| knwn_State.equals("Unknown")){
@@ -470,6 +469,44 @@ public class Test extends AppCompatActivity {
 
         }}
 
+    public void markfvrt () {
+        if (cursor.getCount()<=0){
+            Toast.makeText(this, "There is no record..", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        switch (cursor.getString(4)){
+            case "N":
+                cpos=cursor.getPosition();
+                boolean isUpdate = db.markDatafvr(cursor.getString(1),  "Y");
+                if(isUpdate){
+                    Toast.makeText(this,"This phrase is marked as favorite..",Toast.LENGTH_LONG).show();
+                    butn_fvrt.setBackground(getResources().getDrawable(android.R.drawable.star_on));
+                    refresh_data();
+                    if (knwn_State.equals("Favorites")|| knwn_State.equals("Not Favorites")){
+                        cursor.moveToPosition(cpos-1); kntr_mark=1;}
+                    else cursor.moveToPosition(cpos);
+                    txv_pnmbr.setText(sb+"/"+top_ks);
+                }
+                else
+                    Toast.makeText(this,"The phrase is not marked as favorite..",Toast.LENGTH_LONG).show();break;
+            case "Y":
+                cpos=cursor.getPosition();
+                isUpdate = db.markDatafvr(cursor.getString(1),  "N");
+                if(isUpdate){
+                    Toast.makeText(this,"This phrase is marked as not favorite..",Toast.LENGTH_LONG).show();
+                    butn_fvrt.setBackground(getResources().getDrawable(android.R.drawable.star_off));
+                    refresh_data();
+                    if (knwn_State.equals("Favorites")|| knwn_State.equals("Not Favorites")){
+                        cursor.moveToPosition(cpos-1); kntr_mark=1;}
+                    else cursor.moveToPosition(cpos);
+
+                    txv_pnmbr.setText(sb+"/"+top_ks);
+                }
+                else
+                    Toast.makeText(this,"This phrase is not marked as not favorite..",Toast.LENGTH_LONG).show();break;
+
+        }}
+
     public void refresh_data() {
         db =new DatabaseHelper(this);
         SQLiteDatabase dbOku = db.getReadableDatabase();
@@ -479,15 +516,15 @@ public class Test extends AppCompatActivity {
                 case "Known":
                     switch (fvrt){
                         case "Favorites":
-                            cursor = dbOku.rawQuery("SELECT * FROM TABLO_WORD WHERE STATE= 'KNOWN' AND FAVORITE= 'FAVORITES' ", null);
+                            cursor = dbOku.rawQuery("SELECT * FROM Terimler WHERE STATE= 'Y' AND FAVORITE= 'Y' ", null);
                             top_ks = cursor.getCount();
                             break;
                         case "Not Favorites":
-                            cursor = dbOku.rawQuery("SELECT * FROM TABLO_WORD WHERE STATE= 'KNOWN' AND FAVORITE= 'NOT FAVORITES' ", null);
+                            cursor = dbOku.rawQuery("SELECT * FROM Terimler WHERE STATE= 'Y' AND FAVORITE= 'N' ", null);
                             top_ks = cursor.getCount();
                             break;
                         case "All":
-                            cursor = dbOku.rawQuery("SELECT * FROM TABLO_WORD WHERE STATE= 'KNOWN' ", null);
+                            cursor = dbOku.rawQuery("SELECT * FROM Terimler WHERE STATE= 'Y' ", null);
                             top_ks = cursor.getCount();
                             break;
                     }
@@ -496,15 +533,15 @@ public class Test extends AppCompatActivity {
                 case "Unknown":
                     switch (fvrt){
                         case "Favorites":
-                            cursor = dbOku.rawQuery("SELECT * FROM TABLO_WORD WHERE STATE= 'UNKNOWN' AND FAVORITE= 'FAVORITES' ", null);
+                            cursor = dbOku.rawQuery("SELECT * FROM Terimler WHERE STATE= 'N' AND FAVORITE= 'Y' ", null);
                             top_ks = cursor.getCount();
                             break;
                         case "Not Favorites":
-                            cursor = dbOku.rawQuery("SELECT * FROM TABLO_WORD WHERE STATE= 'UNKNOWN' AND FAVORITE= 'NOT FAVORITES' ", null);
+                            cursor = dbOku.rawQuery("SELECT * FROM Terimler WHERE STATE= 'N' AND FAVORITE= 'N' ", null);
                             top_ks = cursor.getCount();
                             break;
                         case "All":
-                            cursor = dbOku.rawQuery("SELECT * FROM TABLO_WORD WHERE STATE= 'UNKNOWN' ", null);
+                            cursor = dbOku.rawQuery("SELECT * FROM Terimler WHERE STATE= 'N' ", null);
                             top_ks = cursor.getCount();
                             break;
                     }
@@ -512,15 +549,15 @@ public class Test extends AppCompatActivity {
                 case "All":
                     switch (fvrt){
                         case "Favorites":
-                            cursor = dbOku.rawQuery("SELECT * FROM TABLO_WORD WHERE FAVORITE= 'FAVORITES' ", null);
+                            cursor = dbOku.rawQuery("SELECT * FROM Terimler WHERE FAVORITE= 'Y' ", null);
                             top_ks = cursor.getCount();
                             break;
                         case "Not Favorites":
-                            cursor = dbOku.rawQuery("SELECT * FROM TABLO_WORD WHERE FAVORITE= 'NOT FAVORITES' ", null);
+                            cursor = dbOku.rawQuery("SELECT * FROM Terimler WHERE FAVORITE= 'N' ", null);
                             top_ks = cursor.getCount();
                             break;
                         case "All":
-                            cursor = dbOku.rawQuery("SELECT * FROM TABLO_WORD ", null);
+                            cursor = dbOku.rawQuery("SELECT * FROM Terimler ", null);
                             top_ks = cursor.getCount();
                             break;
                     }
@@ -533,15 +570,15 @@ public class Test extends AppCompatActivity {
                 case "Known":
                     switch (fvrt){
                         case "Favorites":
-                            cursor = dbOku.rawQuery("SELECT * FROM TABLO_WORD WHERE CATEGORY='" + ctgry + "' AND STATE= 'KNOWN' AND FAVORITE= 'FAVORITES' ", null);
+                            cursor = dbOku.rawQuery("SELECT * FROM Terimler WHERE CATEGORY='" + ctgry + "' AND STATE= 'Y' AND FAVORITE= 'Y' ", null);
                             top_ks = cursor.getCount();
                             break;
                         case "Not Favorites":
-                            cursor = dbOku.rawQuery("SELECT * FROM TABLO_WORD WHERE CATEGORY='" + ctgry + "' AND STATE= 'KNOWN' AND FAVORITE= 'NOT FAVORITES' ", null);
+                            cursor = dbOku.rawQuery("SELECT * FROM Terimler WHERE CATEGORY='" + ctgry + "' AND STATE= 'Y' AND FAVORITE= 'N' ", null);
                             top_ks = cursor.getCount();
                             break;
                         case "All":
-                            cursor = dbOku.rawQuery("SELECT * FROM TABLO_WORD WHERE CATEGORY='" + ctgry + "' AND STATE= 'KNOWN' ", null);
+                            cursor = dbOku.rawQuery("SELECT * FROM Terimler WHERE CATEGORY='" + ctgry + "' AND STATE= 'Y' ", null);
                             top_ks = cursor.getCount();
                             break;
                     }
@@ -549,15 +586,15 @@ public class Test extends AppCompatActivity {
                 case "Unknown":
                     switch (fvrt){
                         case "Favorites":
-                            cursor = dbOku.rawQuery("SELECT * FROM TABLO_WORD WHERE CATEGORY='" + ctgry + "' AND STATE= 'UNKNOWN' AND FAVORITE= 'FAVORITES' ", null);
+                            cursor = dbOku.rawQuery("SELECT * FROM Terimler WHERE CATEGORY='" + ctgry + "' AND STATE= 'N' AND FAVORITE= 'Y' ", null);
                             top_ks = cursor.getCount();
                             break;
                         case "Not Favorites":
-                            cursor = dbOku.rawQuery("SELECT * FROM TABLO_WORD WHERE CATEGORY='" + ctgry + "' AND STATE= 'UNKNOWN' AND FAVORITE= 'NOT FAVORITES' ", null);
+                            cursor = dbOku.rawQuery("SELECT * FROM Terimler WHERE CATEGORY='" + ctgry + "' AND STATE= 'N' AND FAVORITE= 'N' ", null);
                             top_ks = cursor.getCount();
                             break;
                         case "All":
-                            cursor = dbOku.rawQuery("SELECT * FROM TABLO_WORD WHERE CATEGORY='" + ctgry + "' AND STATE= 'UNKNOWN' ", null);
+                            cursor = dbOku.rawQuery("SELECT * FROM Terimler WHERE CATEGORY='" + ctgry + "' AND STATE= 'N' ", null);
                             top_ks = cursor.getCount();
                             break;
                     }
@@ -565,15 +602,15 @@ public class Test extends AppCompatActivity {
                 case "All":
                     switch (fvrt){
                         case "Favorites":
-                            cursor = dbOku.rawQuery("SELECT * FROM TABLO_WORD WHERE CATEGORY='" + ctgry + "'  AND FAVORITE= 'FAVORITES' ", null);
+                            cursor = dbOku.rawQuery("SELECT * FROM Terimler WHERE CATEGORY='" + ctgry + "'  AND FAVORITE= 'Y' ", null);
                             top_ks = cursor.getCount();
                             break;
                         case "Not Favorites":
-                            cursor = dbOku.rawQuery("SELECT * FROM TABLO_WORD WHERE CATEGORY='" + ctgry + "'  AND FAVORITE= 'NOT FAVORITES' ", null);
+                            cursor = dbOku.rawQuery("SELECT * FROM Terimler WHERE CATEGORY='" + ctgry + "'  AND FAVORITE= 'N' ", null);
                             top_ks = cursor.getCount();
                             break;
                         case "All":
-                            cursor = dbOku.rawQuery("SELECT * FROM TABLO_WORD WHERE CATEGORY='" + ctgry + "'  ", null);
+                            cursor = dbOku.rawQuery("SELECT * FROM Terimler WHERE CATEGORY='" + ctgry + "'  ", null);
                             top_ks = cursor.getCount();
                             break;
                     }
