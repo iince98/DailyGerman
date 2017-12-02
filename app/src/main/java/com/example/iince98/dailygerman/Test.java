@@ -1,6 +1,5 @@
 package com.example.iince98.dailygerman;
 
-import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
@@ -10,7 +9,6 @@ import android.os.Build;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.AppCompatTextView;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -324,31 +322,31 @@ public class Test extends AppCompatActivity {
         }
         if (cursor.getCount()<1) Toast.makeText(this, "There is no record..", Toast.LENGTH_SHORT).show();
         else {cursor.moveToFirst();
-            liste1 = new String[]{cursor.getString(0),  cursor.getString(1)/*, cursor.getString(2), cursor.getString(3), cursor.getString(4)*/};
+            liste1 = new String[]{cursor.getString(0),  cursor.getString(1), cursor.getString(2), cursor.getString(3), cursor.getString(4)};
 
 
 
-            txv_phrs.setText(liste1 [0]);
-            txv_answr.setText(liste1 [1]);
+            txv_phrs.setText(liste1 [1]);
+            txv_answr.setText(liste1 [2]);
             sb=sb+1;
             txv_pnmbr.setText(sb+"/"+top_ks);
 
-            /*switch (liste1 [3]) {
+            switch (liste1 [3]) {
                 case "N":
-                    butn_st.setBackground(Drawable.createFromPath("@android:color/holo_red_dark"));
-                    txv_answr.setBackground(getResources().getDrawable(Integer.parseInt("@drawable/tv_phraseanswr")));
-                    txv_phrs.setBackground(getResources().getDrawable(Integer.parseInt("tv_phrasek")));
+                    butn_st.setBackground(ColorDrawable.createFromPath("@android:color/holo_red_dark"));
+                    txv_answr.setBackground(getResources().getDrawable(R.drawable.tv_phraseanswr));
+                    txv_phrs.setBackground(getResources().getDrawable(R.drawable.tv_phrasek));
                     break;
                 case "Y":
                     butn_st.setBackground(Drawable.createFromPath("@android:color/holo_green_dark"));
-                    txv_answr.setBackground(getResources().getDrawable(Integer.parseInt("@drawable/tv_phraseanswr")));
-                    txv_phrs.setBackground(getResources().getDrawable(Integer.parseInt("tv_phrase")));
+                    txv_answr.setBackground(getResources().getDrawable(R.drawable.tv_phraseanswr));
+                    txv_phrs.setBackground(getResources().getDrawable(R.drawable.tv_phrase));
                     break;
             }
             if (cursor.getString(4).equals("Y")){
                 txv_fvrt.setBackground (Drawable.createFromPath("@android:drawable/star_on"));
             } else
-                txv_fvrt.setBackground (Drawable.createFromPath("@android:drawable/star_off"));*/
+                txv_fvrt.setBackground (Drawable.createFromPath("@android:drawable/star_off"));
         }
     }
 
@@ -372,22 +370,22 @@ public class Test extends AppCompatActivity {
         txv_answr.setText(cursor.getString(1));
         sb=sb+1;
         txv_pnmbr.setText(sb+"/"+top_ks);
-       /* switch (cursor.getString(3)) {
+        switch (cursor.getString(3)) {
             case "N":
                 butn_st.setBackground(Drawable.createFromPath("@android:color/holo_red_dark"));
-                txv_answr.setBackground(getResources().getDrawable(Integer.parseInt("@drawable/tv_phraseanswr")));
-                txv_phrs.setBackground(getResources().getDrawable(Integer.parseInt("tv_phrasek")));
+                txv_answr.setBackground(getResources().getDrawable(R.drawable.tv_phraseanswr));
+                txv_phrs.setBackground(getResources().getDrawable(R.drawable.tv_phrasek));
                 break;
             case "Y":
                 butn_st.setBackground(Drawable.createFromPath("@android:color/holo_green_dark"));
-                txv_answr.setBackground(getResources().getDrawable(Integer.parseInt("@drawable/tv_phraseanswr")));
-                txv_phrs.setBackground(getResources().getDrawable(Integer.parseInt("tv_phrase")));
+                txv_answr.setBackground(getResources().getDrawable(R.drawable.tv_phraseanswr));
+                txv_phrs.setBackground(getResources().getDrawable(R.drawable.tv_phrase));
                 break;
         }
         if (cursor.getString(4)=="Y"){
             txv_fvrt.setBackground (Drawable.createFromPath("@android:drawable/star_on"));
         } else
-            txv_fvrt.setBackground (Drawable.createFromPath("@android:drawable/star_off"));*/
+            txv_fvrt.setBackground (Drawable.createFromPath("@android:drawable/star_off"));
 
     }
     public void showprev(){
@@ -416,13 +414,13 @@ public class Test extends AppCompatActivity {
         switch (cursor.getString(3)) {
             case "N":
                 butn_st.setBackground(Drawable.createFromPath("@android:color/holo_red_dark"));
-                txv_answr.setBackground(getResources().getDrawable(Integer.parseInt("@drawable/tv_phraseanswr")));
-                txv_phrs.setBackground(getResources().getDrawable(Integer.parseInt("tv_phrasek")));
+                txv_answr.setBackground(getResources().getDrawable(R.drawable.tv_phraseanswr));
+                txv_phrs.setBackground(getResources().getDrawable(R.drawable.tv_phrasek));
                 break;
             case "Y":
                 butn_st.setBackground(Drawable.createFromPath("@android:color/holo_green_dark"));
-                txv_answr.setBackground(getResources().getDrawable(Integer.parseInt("@drawable/tv_phraseanswr")));
-                txv_phrs.setBackground(getResources().getDrawable(Integer.parseInt("tv_phrase")));
+                txv_answr.setBackground(getResources().getDrawable(R.drawable.tv_phraseanswr));
+                txv_phrs.setBackground(getResources().getDrawable(R.drawable.tv_phrase));
                 break;
         }
         if (cursor.getString(4)=="Y"){

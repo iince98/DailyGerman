@@ -127,7 +127,7 @@
 
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
-            android:background="@drawable/tv_phrase"
+            android:background="@drawable/tv_phrasek"
             android:paddingLeft="10dp"
             android:paddingRight="10dp"
             android:paddingTop="5dp"

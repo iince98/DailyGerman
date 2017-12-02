@@ -31,7 +31,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
      */
     public DatabaseHelper(Context context) {
 
-        super(context, DB_NAME, null, 2);
+        super(context, DB_NAME, null, 5);
         this.myContext = context;
         DB_PATH= myContext.getDatabasePath(DB_NAME).toString();
     }
@@ -45,6 +45,17 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         if(dbExist){
             //do nothing - database already exist
+            this.getWritableDatabase();
+
+            try {
+
+                copyDataBase();
+
+            } catch (IOException e) {
+
+                throw new Error("Error copying database");
+
+            }
         }else{
 
             //By calling this method and empty database will be created into the default system path
@@ -127,6 +138,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         //Open the database
         String myPath = DB_PATH ;
+        SQLiteDatabase.openDatabase(myPath, null, SQLiteDatabase.OPEN_READONLY);
         myDataBase = SQLiteDatabase.openDatabase(myPath, null, SQLiteDatabase.OPEN_READONLY);
 
     }
