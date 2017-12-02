@@ -36,7 +36,7 @@ public class Veri_al extends AppCompatActivity {
             if (copyDatabase(this)) {
                 Toast.makeText(this, "Veri alma işlerim başarılı", Toast.LENGTH_LONG).show();
             }else {
-                Toast.makeText(this, "Veri alma işlerim başarısız", Toast.LENGTH_LONG).show();
+                Toast.makeText(this, "Veri alma işlerim başarısızdır", Toast.LENGTH_LONG).show();
                 return;
             }
         }
