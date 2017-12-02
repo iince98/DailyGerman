@@ -324,7 +324,7 @@ public class Test extends AppCompatActivity {
         else {cursor.moveToFirst();
             liste1 = new String[]{cursor.getString(0),  cursor.getString(1), cursor.getString(2), cursor.getString(3), cursor.getString(4)};
 
-
+//aa
 
             txv_phrs.setText(liste1 [1]);
             txv_answr.setText(liste1 [2]);
