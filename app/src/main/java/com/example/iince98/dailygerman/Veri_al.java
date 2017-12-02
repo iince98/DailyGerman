@@ -1,120 +1,67 @@
 package com.example.iince98.dailygerman;
 
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
+import android.content.Context;
+import android.content.Intent;
+import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.DefaultItemAnimator;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.SearchView;
+import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+import android.widget.ListView;
 import android.widget.Toast;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.LinkedHashMap;
-import java.util.Map;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.util.List;
 
-/**
- * Created by VisH on 18-10-2016.
- */
-public class Veri_al extends MainActivity {
-
-    public static RecyclerView.Adapter adapter;
-    private RecyclerView.LayoutManager layoutManager;
-    private static RecyclerView recyclerView;
-    public static ArrayList<DictObjectModel> data;
-    DatabaseHelper db ;
-    ArrayList<String> wordcombimelist, meancombimelist;
-    LinkedHashMap<String,String> namelist;
-    SearchView searchView;
-
-
+public class Veri_al extends AppCompatActivity {
+    private ListView lvterim;
+    private Adapter adapter;
+    private List<Terim_class> mterimclass;
+    private DatabaseHelper mDBHelper;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.veri_al);
+        setContentView(R.layout.activity_main);
+        ListView lvterim= (ListView)findViewById(R.id.lvterim);
+        mDBHelper= new DatabaseHelper(this);
 
-        recyclerView = (RecyclerView) findViewById(R.id.my_recycler_view);
-        recyclerView.setHasFixedSize(true);
-        db= new DatabaseHelper(this);
-        searchView = (SearchView) findViewById(R.id.searchView);
-        searchView.setQueryHint("Ara...");
-        searchView.setQueryRefinementEnabled(true);
-        layoutManager = new LinearLayoutManager(this);
-        recyclerView.setLayoutManager(layoutManager);
-        recyclerView.setItemAnimator(new DefaultItemAnimator());
-        data = new ArrayList<DictObjectModel>();
-        fetchData();
+        File veritabanı= getApplicationContext().getDatabasePath(DatabaseHelper.DB_NAME);
+        if (false== veritabanı.exists()) {
+            mDBHelper.getReadableDatabase();
 
-
-        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-            @Override
-            public boolean onQueryTextSubmit(String query) {return  false; }
-
-            @Override
-            public boolean onQueryTextChange(String newText) {
-
-
-                newText = newText.toLowerCase();
-
-                final ArrayList<DictObjectModel> filteredList = new ArrayList<DictObjectModel>();
-
-                for (int i = 0; i < wordcombimelist.size(); i++) {
-
-                    final String text = wordcombimelist.get(i).toLowerCase();
-                    if (text.contains(newText)) {
-
-                        filteredList.add(new DictObjectModel(wordcombimelist.get(i),meancombimelist.get(i)));
-                    }
-                }
-                adapter = new CustomAdapter(filteredList);
-                recyclerView.setAdapter(adapter);
-                return true;
+            if (copyDatabase(this)) {
+                Toast.makeText(this, "Veri alma işlerim başarılı", Toast.LENGTH_LONG).show();
+            }else {
+                Toast.makeText(this, "Veri alma işlerim başarısız", Toast.LENGTH_LONG).show();
+                return;
             }
-        });
-
+        }
+        mterimclass= mDBHelper.terimal();
+        adapter= new Adapter(this, mterimclass);
+        lvterim.setAdapter(adapter);
     }
-    public void fetchData()
-    {
-        db =new DatabaseHelper(this);
+
+    private boolean copyDatabase(Context context) {
         try {
-
-            db.createDataBase();
-            db.openDataBase();
-
-        }
-        catch (Exception e)
-        {
+            InputStream inputStream= context.getAssets().open(DatabaseHelper.DB_NAME);
+            String outfilename= DatabaseHelper.DB_PATH + DatabaseHelper.DB_NAME;
+            OutputStream outputStream = new FileOutputStream(outfilename);
+            byte [] buffer= new byte[inputStream.available()];
+            int dosyauzunlugu=0;
+            while ((dosyauzunlugu = inputStream.read(buffer))>0) {
+                outputStream.write(buffer, 0, dosyauzunlugu);
+                }
+                outputStream.flush();
+                outputStream.close();
+            Log.v("Veri_al", "DB kopyalandı");
+            return true;
+        } catch (IOException e) {
             e.printStackTrace();
+            return false;
         }
-
-        namelist=new LinkedHashMap<>();
-        int ii;
-        SQLiteDatabase sd = db.getReadableDatabase();
-
-        Cursor cursor = sd.query("Terimler" ,null, null, null, null, null, null);
-        //Cursor cursor = sd.query("Terimler1" ,null, null, null, null, null, null);
-        ii=cursor.getColumnIndex("Terim");
-        //ii=cursor.getColumnIndex("kategori");
-
-        wordcombimelist=new ArrayList<String>();
-        meancombimelist= new ArrayList<String>();
-        while (cursor.moveToNext()){
-            namelist.put(cursor.getString(ii), cursor.getString(cursor.getColumnIndex("Anlamı")));
-            //namelist.put(cursor.getString(ii), cursor.getString(cursor.getColumnIndex("anlamı")));
-        }
-        Iterator entries = namelist.entrySet().iterator();
-        while (entries.hasNext()) {
-            Map.Entry thisEntry = (Map.Entry) entries.next();
-            wordcombimelist.add(String.valueOf(thisEntry.getKey()));
-            meancombimelist.add("- "+String.valueOf(thisEntry.getValue()));
-        }
-
-        for (int i = 0; i < wordcombimelist.size(); i++) {
-            data.add(new DictObjectModel(wordcombimelist.get(i), meancombimelist.get(i)));
-        }
-        adapter = new CustomAdapter(data);
-        recyclerView.setAdapter(adapter);
-
     }
 }
