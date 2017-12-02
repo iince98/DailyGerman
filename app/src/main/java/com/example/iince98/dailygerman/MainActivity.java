@@ -26,9 +26,8 @@ public class MainActivity extends AppCompatActivity {
         calisma.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent= new Intent(getApplicationContext(), Test.class);
+                Intent intent= new Intent(getApplication(), Test.class);
                 startActivity(intent);
-
             }
         });
     }

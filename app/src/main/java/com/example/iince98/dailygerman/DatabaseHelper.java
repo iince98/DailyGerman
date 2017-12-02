@@ -24,14 +24,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     private final Context myContext;
 
-    /**
-     * Constructor
-     * Takes and keeps a reference of the passed context in order to access to the application assets and resources.
-     * @param context
-     */
+
     public DatabaseHelper(Context context) {
 
-        super(context, DB_NAME, null, 5);
+        super(context, DB_NAME, null, 1);
         this.myContext = context;
         DB_PATH= myContext.getDatabasePath(DB_NAME).toString();
     }
@@ -44,7 +40,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         boolean dbExist = checkDataBase();
 
         if(dbExist){
-            //do nothing - database already exist
             this.getWritableDatabase();
 
             try {
@@ -56,6 +51,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 throw new Error("Error copying database");
 
             }
+            //do nothing - database already exist
         }else{
 
             //By calling this method and empty database will be created into the default system path
@@ -138,7 +134,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         //Open the database
         String myPath = DB_PATH ;
-        SQLiteDatabase.openDatabase(myPath, null, SQLiteDatabase.OPEN_READONLY);
         myDataBase = SQLiteDatabase.openDatabase(myPath, null, SQLiteDatabase.OPEN_READONLY);
 
     }

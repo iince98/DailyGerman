@@ -37,7 +37,7 @@ public class Veri_al extends MainActivity {
         recyclerView = (RecyclerView) findViewById(R.id.my_recycler_view);
         recyclerView.setHasFixedSize(true);
         db= new DatabaseHelper(this);
-        searchView = (SearchView) findViewById(R.id.searchView);
+        SearchView searchView = (SearchView) findViewById(R.id.searchView);
         searchView.setQueryHint("Ara...");
         searchView.setQueryRefinementEnabled(true);
         layoutManager = new LinearLayoutManager(this);
@@ -92,22 +92,13 @@ public class Veri_al extends MainActivity {
         int ii;
         SQLiteDatabase sd = db.getReadableDatabase();
 
-
-        //Cursor cursor = sd.rawQuery("SELECT * FROM Terimler ", null);
         Cursor cursor = sd.query("Terimler" ,null, null, null, null, null, null);
-        //Cursor cursor = sd.query("Terimler1" ,null, null, null, null, null, null);
-        if (cursor.getCount()<=0){
-            Toast.makeText(this, "There is no record..", Toast.LENGTH_SHORT).show();
-            return;
-        }
-        ii=cursor.getColumnIndex("Terim");
-        //ii=cursor.getColumnIndex("kategori");
+        //ii=cursor.getColumnIndex("Terim");
 
         wordcombimelist=new ArrayList<String>();
         meancombimelist= new ArrayList<String>();
         while (cursor.moveToNext()){
-            namelist.put(cursor.getString(ii), cursor.getString(cursor.getColumnIndex("Anlamı")));
-            //namelist.put(cursor.getString(ii), cursor.getString(cursor.getColumnIndex("anlamı")));
+            namelist.put(cursor.getString(1), cursor.getString(2));
         }
         Iterator entries = namelist.entrySet().iterator();
         while (entries.hasNext()) {
