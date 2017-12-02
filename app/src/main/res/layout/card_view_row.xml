@@ -3,9 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginTop="3dp"
-    android:descendantFocusability="blocksDescendants"
-    xmlns:card_view="http://schemas.android.com/apk/res-auto"
-    >
+    android:descendantFocusability="blocksDescendants">
 
     <android.support.v7.widget.CardView
         android:layout_width="match_parent"
@@ -21,7 +19,6 @@
             android:layout_width="match_parent"
             android:layout_height="fill_parent"
             android:padding="16dp" android:descendantFocusability="blocksDescendants"
-
             >
             <LinearLayout
                 android:layout_width="match_parent"
@@ -33,8 +30,7 @@
                     android:layout_height="wrap_content"
                     android:id="@+id/wordtext"
                     android:textColor="#000"
-
-                    android:textSize="15sp"
+                    android:textSize="30sp"
                     />
             </LinearLayout>
             <RelativeLayout
@@ -57,13 +53,17 @@
                     android:text="@string/definition" android:layout_margin="1dp" android:gravity="start|center"
                     android:textColor="#000"
                     android:id="@+id/mean"
+                    android:textSize="20dp"
                     />
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/mean"
                     android:id="@+id/meaningtext"
-                    android:textColor="#606062" android:gravity="left" android:layout_margin="1dp"
+                    android:textColor="#606062"
+                    android:gravity="left" android:layout_margin="1dp"
+                    android:textSize="20dp"
+
                     />
             </RelativeLayout>
         </RelativeLayout>

@@ -93,8 +93,6 @@ public class Veri_al extends MainActivity {
         SQLiteDatabase sd = db.getReadableDatabase();
 
         Cursor cursor = sd.query("Terimler" ,null, null, null, null, null, null);
-        //ii=cursor.getColumnIndex("Terim");
-
         wordcombimelist=new ArrayList<String>();
         meancombimelist= new ArrayList<String>();
         while (cursor.moveToNext()){
