@@ -17,9 +17,12 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.IOException;
 import java.lang.reflect.Field;
 import java.text.DateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.HashSet;
 
 public class Test extends AppCompatActivity {
 
@@ -62,8 +65,6 @@ public class Test extends AppCompatActivity {
             }
         }
     };
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -108,33 +109,39 @@ public class Test extends AppCompatActivity {
         setMarqueeSpeed(txv_info, speed1, true);
 
     }
-
     public void spinner_ctgry_refresh(){
-        String ctgries []=getResources().getStringArray(R.array.ctgries);
-        ArrayAdapter<String> adapter=new ArrayAdapter<>(getApplicationContext(),R.layout.spinner_1, ctgries);
+        db=new DatabaseHelper(this);
+        SQLiteDatabase dbOku = db.getReadableDatabase();
+        Cursor cursor = dbOku.rawQuery("SELECT CATEGORY FROM Terimler ORDER BY CATEGORY ASC ", null);
+        final ArrayList<String> liste=new ArrayList<>();
+        liste.add("All");
+        if (cursor.getCount()>0) {
+            cursor.moveToFirst();
+            while (!cursor.isAfterLast()){
+                liste.add(cursor.getString(0));
+                cursor.moveToNext();
+            }
+        }
+        cursor.close();
+        //Deleting Same entries
+        HashSet<String> hashSet = new HashSet<String>();
+        hashSet.addAll(liste);
+        liste.clear();
+        liste.addAll(hashSet);
+
+        ArrayAdapter<String>adapter=new ArrayAdapter<>(getApplicationContext(), R.layout.spinner_1,liste);
         spinner_ctgry.setAdapter(adapter);
         spinner_ctgry.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 
-                switch (position) {
-                    case 0:
-                        ctgry = "All";
-                        break;
-                    case 1:
-                        ctgry = "Kitchen";
-                        break;
-                    case 2:
-                        ctgry = "Health";
-                        break;
-                }
+                ctgry= liste.get(position);
+
             }
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
-                Toast.makeText(getApplicationContext(),"Select a category..",Toast.LENGTH_SHORT).show();
-
             }
         });
     }
@@ -353,9 +360,12 @@ public class Test extends AppCompatActivity {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
             txv_answr.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
         }
-        if (cursor.getCount()<=0){
-            Toast.makeText(this, "There is no record..", Toast.LENGTH_SHORT).show();
+        if (txv_phrs.getText().equals("Phrase")) {
+            Toast.makeText(this, "Please make your selection and push 'GO' button..", Toast.LENGTH_SHORT).show();
             return;
+        }else if (cursor.getCount()<=0){
+                Toast.makeText(this, "There is no record..", Toast.LENGTH_SHORT).show();
+                return;
         }
         if (cursor.isLast()){
             cursor.moveToFirst();
@@ -391,7 +401,10 @@ public class Test extends AppCompatActivity {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
             txv_answr.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
         }
-        if (cursor.getCount()<=0){
+        if (txv_phrs.getText().equals("Phrase")) {
+            Toast.makeText(this, "Please make your selection and push 'GO' button..", Toast.LENGTH_SHORT).show();
+            return;
+        }else if (cursor.getCount()<=0){
             Toast.makeText(this, "There is no record..", Toast.LENGTH_SHORT).show();
             return;
         }
@@ -430,7 +443,10 @@ public class Test extends AppCompatActivity {
     }
 
     public void marknown () {
-        if (cursor.getCount()<=0){
+        if (txv_phrs.getText().equals("Phrase")) {
+            Toast.makeText(this, "Please make your selection and push 'GO' button..", Toast.LENGTH_SHORT).show();
+            return;
+        }else if (cursor.getCount()<=0){
             Toast.makeText(this, "There is no record..", Toast.LENGTH_SHORT).show();
             return;
         }
@@ -470,7 +486,10 @@ public class Test extends AppCompatActivity {
         }}
 
     public void markfvrt () {
-        if (cursor.getCount()<=0){
+        if (txv_phrs.getText().equals("Phrase")) {
+            Toast.makeText(this, "Please make your selection and push 'GO' button..", Toast.LENGTH_SHORT).show();
+            return;
+        }else if (cursor.getCount()<=0){
             Toast.makeText(this, "There is no record..", Toast.LENGTH_SHORT).show();
             return;
         }

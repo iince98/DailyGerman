@@ -6,6 +6,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -183,6 +184,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.update("Terimler", contentValues, " Terim = ? ", new String[] { id1 });
         return true;
     }
+
 
 }
 
