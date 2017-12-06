@@ -41,7 +41,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         boolean dbExist = checkDataBase();
 
         if(dbExist){
-            this.getWritableDatabase();
+           /* this.getWritableDatabase();
 
             try {
 
@@ -51,7 +51,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
                 throw new Error("Error copying database");
 
-            }
+            }*/
             //do nothing - database already exist
         }else{
 
