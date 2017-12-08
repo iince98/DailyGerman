@@ -31,9 +31,9 @@ public class Test extends AppCompatActivity {
     Button butn_go, butn_prev, butn_next, butn_fvrt, butn_st;
     Spinner spinner_ctgry, spinner_st, spinner_fvrt;
     String knwn_State, ctgry, fvrt;
-    Integer  top_ks, topb_ks, topnb_ks,sb=0, snb=0, cpos, kntr_mark=0;
+    Integer  top_ks, sb=0, cpos, kntr_mark=0;
     DatabaseHelper db;
-    Cursor cursor, cursor_renk;
+    Cursor cursor;
     public String [] liste1;
     LinearLayout tv_layout;
 
@@ -106,8 +106,18 @@ public class Test extends AppCompatActivity {
         spinner_fvrt_refresh();
         //info bar
         String currentDate = DateFormat.getDateInstance().format(Calendar.getInstance().getTime());
-        //txv_info.setText(liste1 [0]);
-        txv_info.setText("The Phrase of the Day ***  "+currentDate+"  ***  Hallo Leute.. Herzlich Willkommen. Wir hoffen euch eines schönes Wochenende..");
+        int dayOfYear = Calendar.getInstance().get(Calendar.DAY_OF_YEAR);
+
+        db=new DatabaseHelper(this);
+        SQLiteDatabase dbOku = db.getReadableDatabase();
+        cursor = dbOku.rawQuery("SELECT * FROM Terimler ORDER BY Terim ASC ", null);
+        if (cursor.getCount()<1){
+            txv_info.setText ("There is no record in your database. Please go to database management and add data..");}
+        else {
+            Integer n = mod(dayOfYear, cursor.getCount());
+            cursor.moveToPosition(n);
+            txv_info.setText(currentDate+"*** The Phrase of the Day *** " + cursor.getString(1) + " *** " + cursor.getString(2) + " *** " );
+        }
         txv_info.setSelected(true);
         float speed1=10;
         setMarqueeSpeed(txv_info, speed1, true);
@@ -214,7 +224,7 @@ public class Test extends AppCompatActivity {
         tv_layout.setVisibility(View.VISIBLE);
         butn_go.setBackground(getResources().getDrawable(R.drawable.btn_go));
         butn_go.setText(getResources().getString(R.string.name_buton));
-        butn_go.setTextColor(Color.GREEN);
+        butn_go.setTextColor(getResources().getColor(android.R.color.holo_green_dark));
         txv_ctgry.setVisibility(View.VISIBLE);
         txv_st.setVisibility(View.VISIBLE);
         txv_fvrt.setVisibility(View.VISIBLE);
@@ -222,8 +232,11 @@ public class Test extends AppCompatActivity {
         spinner_st.setVisibility(View.VISIBLE);
         spinner_fvrt.setVisibility(View.VISIBLE);
         txv_phrs.setText(getResources().getString(R.string.name_tvphr));
+        txv_phrs.setBackground(getResources().getDrawable(R.drawable.tv_phrasek));
         txv_answr.setText(getResources().getString(R.string.name_tvans));
         txv_pnmbr.setText("#/#");
+        butn_st.setBackground(getResources().getDrawable(android.R.drawable.presence_video_busy));
+        butn_fvrt.setBackground (getResources().getDrawable(android.R.drawable.star_off));
         return;}
         //seçilen kelime bilgilerinin bulunması ve liste dizisine atanması
 
@@ -353,13 +366,14 @@ public class Test extends AppCompatActivity {
             tv_layout.setVisibility(View.INVISIBLE);
             butn_go.setBackground(getResources().getDrawable(R.drawable.btn_gog));
             butn_go.setText(getResources().getString(R.string.name_butong));
-            butn_go.setTextColor(Color.RED);
+            butn_go.setTextColor(getResources().getColor(android.R.color.holo_red_dark));
             txv_ctgry.setVisibility(View.INVISIBLE);
             txv_st.setVisibility(View.INVISIBLE);
             txv_fvrt.setVisibility(View.INVISIBLE);
             spinner_ctgry.setVisibility(View.INVISIBLE);
             spinner_st.setVisibility(View.INVISIBLE);
             spinner_fvrt.setVisibility(View.INVISIBLE);
+
             txv_phrs.setText(liste1 [1]);
             txv_answr.setText(liste1 [2]);
             sb=sb+1;
@@ -401,8 +415,7 @@ public class Test extends AppCompatActivity {
         }
         else
             cursor.moveToNext();
-        txv_info.setText(cursor.getString(0)+"***"+cursor.getString(1));
-        txv_info.setSelected(true);
+        //txv_info.setText(cursor.getString(0)+"***"+cursor.getString(1));
         txv_phrs.setText(cursor.getString(1));
         txv_answr.setText(cursor.getString(2));
         sb=sb+1;
@@ -445,8 +458,7 @@ public class Test extends AppCompatActivity {
             if (kntr_mark.equals(1)) kntr_mark=0;
             else cursor.moveToPrevious();}
 
-        txv_info.setText(cursor.getString(0)+"***"+cursor.getString(3));
-        txv_info.setSelected(true);
+        //txv_info.setText(cursor.getString(0)+"***"+cursor.getString(3));
         txv_phrs.setText(cursor.getString(1));
         txv_answr.setText(cursor.getString(2));
         sb=sb-1;
@@ -694,5 +706,12 @@ public class Test extends AppCompatActivity {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+    private int mod(int x, int y)
+    {
+        int result = x % y;
+        if (result < 0)
+            result += y;
+        return result;
     }
 }
