@@ -25,6 +25,7 @@
         android:singleLine="true"/>
 
     <LinearLayout
+        android:id="@+id/tv_lay"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginLeft="10dp"
@@ -72,7 +73,7 @@
         android:layout_height="0dp"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
-        android:layout_weight="0.055"
+        android:layout_weight="0.065"
         android:background="@android:color/transparent"
         android:orientation="horizontal"
         android:weightSum="3">
@@ -115,7 +116,7 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginBottom="5dp"
-        android:layout_weight="0.55"
+        android:layout_weight="0.54"
         android:orientation="vertical"
         android:weightSum="1">
 
@@ -176,7 +177,7 @@
             android:id="@+id/btn_prev"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="0.2"
+            android:layout_weight="0.15"
             android:background="@android:drawable/ic_media_previous"
             tools:layout_editor_absoluteX="148dp"
             tools:layout_editor_absoluteY="161dp" />
@@ -185,7 +186,7 @@
             android:id="@+id/btn_st"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="0.2"
+            android:layout_weight="0.15"
             android:alpha="1"
             android:background="@android:drawable/presence_video_busy" />
 
@@ -193,7 +194,7 @@
             android:id="@+id/tv_pnmbr"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="0.2"
+            android:layout_weight="0.4"
             android:text="#/#"
             android:textAlignment="center"
             android:textColor="@android:color/background_dark"
@@ -203,7 +204,7 @@
             android:id="@+id/btn_fvrt"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="0.2"
+            android:layout_weight="0.15"
             android:background="@android:drawable/star_off"
             android:backgroundTint="@android:color/background_light" />
 
@@ -211,7 +212,7 @@
             android:id="@+id/btn_next"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="0.2"
+            android:layout_weight="0.15"
             android:background="@android:drawable/ic_media_next" />
     </LinearLayout>
 

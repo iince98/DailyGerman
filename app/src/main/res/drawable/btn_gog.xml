@@ -8,7 +8,6 @@
         />
     <corners android:radius="8dip"/>
     <stroke android:color="#5D4037" android:width="1dp"/>
-
     <gradient
         android:angle="135"
         android:centerX="25%"

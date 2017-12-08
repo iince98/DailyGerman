@@ -13,6 +13,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -34,6 +35,7 @@ public class Test extends AppCompatActivity {
     DatabaseHelper db;
     Cursor cursor, cursor_renk;
     public String [] liste1;
+    LinearLayout tv_layout;
 
     //herhangi bir butona tıklandıgında Id ile btn tespiti ve switch case ile uygulanacak metoda gitme
     public View.OnClickListener btnClickListener=new View.OnClickListener() {
@@ -70,6 +72,8 @@ public class Test extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.test);
+
+         tv_layout = findViewById(R.id.tv_lay);
 
         //texview tanımlama
         txv_st= findViewById(R.id.tv_st);
@@ -205,6 +209,22 @@ public class Test extends AppCompatActivity {
     }
 
     public void showgo() {
+        sb=0;
+        if (butn_go.getText().equals(getResources().getString(R.string.name_butong))){
+        tv_layout.setVisibility(View.VISIBLE);
+        butn_go.setBackground(getResources().getDrawable(R.drawable.btn_go));
+        butn_go.setText(getResources().getString(R.string.name_buton));
+        butn_go.setTextColor(Color.GREEN);
+        txv_ctgry.setVisibility(View.VISIBLE);
+        txv_st.setVisibility(View.VISIBLE);
+        txv_fvrt.setVisibility(View.VISIBLE);
+        spinner_ctgry.setVisibility(View.VISIBLE);
+        spinner_st.setVisibility(View.VISIBLE);
+        spinner_fvrt.setVisibility(View.VISIBLE);
+        txv_phrs.setText(getResources().getString(R.string.name_tvphr));
+        txv_answr.setText(getResources().getString(R.string.name_tvans));
+        txv_pnmbr.setText("#/#");
+        return;}
         //seçilen kelime bilgilerinin bulunması ve liste dizisine atanması
 
             db =new DatabaseHelper(this);
@@ -218,7 +238,7 @@ public class Test extends AppCompatActivity {
             {
                 e.printStackTrace();
             }
-        Toast.makeText(getApplicationContext(),"heey..",Toast.LENGTH_SHORT).show();
+
         SQLiteDatabase dbOku = db.getReadableDatabase();
 
         if (ctgry.equals("All")) {
@@ -330,8 +350,16 @@ public class Test extends AppCompatActivity {
         if (cursor.getCount()<1) Toast.makeText(this, "There is no record..", Toast.LENGTH_SHORT).show();
         else {cursor.moveToFirst();
             liste1 = new String[]{cursor.getString(0),  cursor.getString(1), cursor.getString(2), cursor.getString(3), cursor.getString(4)};
-
-
+            tv_layout.setVisibility(View.INVISIBLE);
+            butn_go.setBackground(getResources().getDrawable(R.drawable.btn_gog));
+            butn_go.setText(getResources().getString(R.string.name_butong));
+            butn_go.setTextColor(Color.RED);
+            txv_ctgry.setVisibility(View.INVISIBLE);
+            txv_st.setVisibility(View.INVISIBLE);
+            txv_fvrt.setVisibility(View.INVISIBLE);
+            spinner_ctgry.setVisibility(View.INVISIBLE);
+            spinner_st.setVisibility(View.INVISIBLE);
+            spinner_fvrt.setVisibility(View.INVISIBLE);
             txv_phrs.setText(liste1 [1]);
             txv_answr.setText(liste1 [2]);
             sb=sb+1;
@@ -460,9 +488,9 @@ public class Test extends AppCompatActivity {
                     txv_phrs.setBackground(getResources().getDrawable(R.drawable.tv_phrase));
                     refresh_data();
                     if (knwn_State.equals("Known")|| knwn_State.equals("Unknown")){
-                        cursor.moveToPosition(cpos-1); kntr_mark=1;}
-                    else cursor.moveToPosition(cpos);
-                    txv_pnmbr.setText(sb+"/"+top_ks);
+                        cursor.moveToPosition(cpos-1); kntr_mark=1;sb=sb-1;txv_pnmbr.setText("#/"+top_ks);}
+                    else {cursor.moveToPosition(cpos);
+                    txv_pnmbr.setText(sb+"/"+top_ks);}
                 }
                 else
                     Toast.makeText(this,"The phrase is not marked as known..",Toast.LENGTH_LONG).show();break;
@@ -475,10 +503,9 @@ public class Test extends AppCompatActivity {
                     txv_phrs.setBackground(getResources().getDrawable(R.drawable.tv_phrasek));
                     refresh_data();
                     if (knwn_State.equals("Known")|| knwn_State.equals("Unknown")){
-                        cursor.moveToPosition(cpos-1); kntr_mark=1;}
-                    else cursor.moveToPosition(cpos);
-
-                    txv_pnmbr.setText(sb+"/"+top_ks);
+                        cursor.moveToPosition(cpos-1); kntr_mark=1;sb=sb-1;txv_pnmbr.setText("#/"+top_ks);}
+                    else {cursor.moveToPosition(cpos);
+                    txv_pnmbr.setText(sb+"/"+top_ks);}
                 }
                 else
                     Toast.makeText(this,"This phrase is not marked as unknown..",Toast.LENGTH_LONG).show();break;
@@ -501,10 +528,10 @@ public class Test extends AppCompatActivity {
                     Toast.makeText(this,"This phrase is marked as favorite..",Toast.LENGTH_LONG).show();
                     butn_fvrt.setBackground(getResources().getDrawable(android.R.drawable.star_on));
                     refresh_data();
-                    if (knwn_State.equals("Favorites")|| knwn_State.equals("Not Favorites")){
-                        cursor.moveToPosition(cpos-1); kntr_mark=1;}
-                    else cursor.moveToPosition(cpos);
-                    txv_pnmbr.setText(sb+"/"+top_ks);
+                    if (fvrt.equals("Favorites")|| fvrt.equals("Not Favorites")){
+                        cursor.moveToPosition(cpos-1); kntr_mark=1;;sb=sb-1;txv_pnmbr.setText("#/"+top_ks);}
+                    else {cursor.moveToPosition(cpos);
+                    txv_pnmbr.setText(sb+"/"+top_ks);}
                 }
                 else
                     Toast.makeText(this,"The phrase is not marked as favorite..",Toast.LENGTH_LONG).show();break;
@@ -515,11 +542,10 @@ public class Test extends AppCompatActivity {
                     Toast.makeText(this,"This phrase is marked as not favorite..",Toast.LENGTH_LONG).show();
                     butn_fvrt.setBackground(getResources().getDrawable(android.R.drawable.star_off));
                     refresh_data();
-                    if (knwn_State.equals("Favorites")|| knwn_State.equals("Not Favorites")){
-                        cursor.moveToPosition(cpos-1); kntr_mark=1;}
-                    else cursor.moveToPosition(cpos);
-
-                    txv_pnmbr.setText(sb+"/"+top_ks);
+                    if (fvrt.equals("Favorites")|| fvrt.equals("Not Favorites")){
+                        cursor.moveToPosition(cpos-1); kntr_mark=1;;sb=sb-1;txv_pnmbr.setText("#/"+top_ks);}
+                    else {cursor.moveToPosition(cpos);
+                    txv_pnmbr.setText(sb+"/"+top_ks);}
                 }
                 else
                     Toast.makeText(this,"This phrase is not marked as not favorite..",Toast.LENGTH_LONG).show();break;
